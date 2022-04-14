@@ -3,8 +3,7 @@ name: NodeJS with Webpack
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    paths: ["src/**"]
 
 jobs:
   build:
@@ -27,7 +26,7 @@ jobs:
         npm install
         npm run build
     - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: test_app # The folder the action should deploy.
