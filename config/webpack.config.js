@@ -585,7 +585,7 @@ module.exports = function (webpackEnv) {
       ],
     },
     plugins: [
-      new AntDesignThemePlugin(themeOptions),
+      // new AntDesignThemePlugin(themeOptions),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(

@@ -1,0 +1,32 @@
+name: Auto Update Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  setup:
+    runs-on: install
+    steps:
+      - run: npm install
+  build:
+    needs: setup
+    runs-on: build-page
+    setps:
+      - run: npm build
+  checkout:
+    needs: build
+    runs-on: checkout-branch
+    setps:
+      - run: git checkout gh-pages
+  mvdir:
+    needs: checkout
+    runs-on: mvdir
+    setps:
+      - run: mv build docs
+  commit:
+    needs: mvdir
+    runs-on: commit
+    steps: 
+      - run: git push
