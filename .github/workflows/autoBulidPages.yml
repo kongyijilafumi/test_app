@@ -4,32 +4,21 @@ on:
   push:
     branches:
       - master
-
+    paths:
+      - "src/**"
 jobs:
-  setup:
+  build-and-update-pages:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [12]
     steps:
-      - run: npm install
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-    setps:
-      - run: npm build
-  checkout:
-    needs: build
-    runs-on: ubuntu-latest
-    setps:
-      - run: git checkout gh-pages
-  mvdir:
-    needs: checkout
-    runs-on: ubuntu-latest
-    setps:
-      - run: mv build docs
-  commit:
-    needs: mvdir
-    runs-on: ubuntu-latest
-    steps:
-      - run: git push
+      - name: build
+        run: |
+          npm i
+          npm run build
+      - name: update
+        uses: JamesIves/github-pages-deploy-action@3.5.2
+        with:
+          branch: gh-pages
+          folder: test_app
