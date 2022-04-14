@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: build
         run: |
-          npm i
+          npm ci
           npm run build
       - name: update
         uses: JamesIves/github-pages-deploy-action@3.5.2
