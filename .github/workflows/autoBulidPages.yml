@@ -1,4 +1,4 @@
-name: Auto Update Pages
+name: AutoUpdatePages
 
 on:
   push:
