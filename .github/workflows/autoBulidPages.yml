@@ -7,26 +7,29 @@ on:
 
 jobs:
   setup:
-    runs-on: install
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12]
     steps:
       - run: npm install
   build:
     needs: setup
-    runs-on: build-page
+    runs-on: ubuntu-latest
     setps:
       - run: npm build
   checkout:
     needs: build
-    runs-on: checkout-branch
+    runs-on: ubuntu-latest
     setps:
       - run: git checkout gh-pages
   mvdir:
     needs: checkout
-    runs-on: mvdir
+    runs-on: ubuntu-latest
     setps:
       - run: mv build docs
   commit:
     needs: mvdir
-    runs-on: commit
-    steps: 
+    runs-on: ubuntu-latest
+    steps:
       - run: git push
