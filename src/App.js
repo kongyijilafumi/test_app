@@ -2,7 +2,7 @@ import Index from "./page/index"
 function App() {
   return (
     <div className="App">
-      react app -test5
+      react app -test6
       <hr></hr>
       <Index />
     </div>
